@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="parent-container" style="margin: auto; width: 50%; display: flex; justify-content: center;">
+        <style>
+            table {
+                width: 7in;
+                height: 9in;
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+
+            tr,
+            th,
+            td {
+                border-right: 1px solid black;
+                border-collapse: collapse;
+            }
+
+            tr th,
+            tr td {
+                height: 25px;
+            }
+
+            th {
+                background-color: #38a7b6 !important;
+                print-color-adjust: exact;
+            }
+
+            td {
+                padding-left: 3px;
+                padding-right: 3px;
+            }
+
+
+            div#bill-info {
+                text-align: center;
+            }
+
+            div#date-info {
+                text-align: right;
+                padding: 10px;
+            }
+
+            span#cname {
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+            button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                font-style: italic;
+                padding: 5px;
+                padding-right: 20px;
+                padding-left: 20px;
+                font-size: 20px;
+                margin-top: 10px;
+                border-radius: 10px;
+            }
+
+            button:hover {
+                cursor: pointer;
+            }
+        </style>
+        <div id="print-layout"
+            style="display: flex; flex-direction: column; justify-content: center; background-color: aliceblue; width: 7in;">
+            <div id="bill-info">
+                <span style="text-decoration: underline;">TAX INVOICE</span><br>
+                <span id="cname">KEYA ENGINEERING WORKS</span><br>
+                <span>313B/1, PASHUPATI BHATTACHARJEE ROAD</span><br>
+                <span>KOLKATA - 700 041</span><br>
+                <span style="text-decoration: underline;">Manufacturer of Plastic Products</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="2" id="winfo" style="border: 1px solid black;">GSTIN:&nbsp;&nbsp;<span
+                                id="wgstid"></span>&nbsp;&nbsp;&nbsp;&nbsp;|
+                            HSN CODE:&nbsp;&nbsp;<span id="hsncode"></span></td>
+                        <td colspan="4" id="wcontact"
+                            style="border-right: none; border-top: 1px solid black; border-bottom: 1px solid black;">
+                            Mobile:&nbsp;<span id="wmobile"></span><br>E-Mail:&nbsp;<span id="wemail"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="binfo">MRS:&nbsp;<span id="mrs"></span><br>GSTIN:&nbsp;<span
+                                id="bgstid"></span><br>STATE:&nbsp;<span id="state"></span></td>
+                        <td colspan="4" id="dinfo" style="border-right: none;">Invoice No:&nbsp;<span
+                                id="invoice"></span><br>Date:&nbsp;<span id="invdate"></span><br>Challan No:&nbsp;<span
+                                id="challan"></span><br>Date:&nbsp;<span id="chaldate"></span><br>Order No:&nbsp;<span
+                                id="order"></span><br>Date:&nbsp;<span id="orddate"></span></td>
+                    </tr>
+                    <tr id="row0">
+                        <th style="border: 1px solid black;">Sr No</th>
+                        <th style="border: 1px solid black;">Descriptions</th>
+                        <th style="border: 1px solid black;">Quantity</th>
+                        <th style="border: 1px solid black;">Unit</th>
+                        <th style="border: 1px solid black;">Rate</th>
+                        <th style="border-right: none; border-top: 1px solid black; border-bottom: 1px solid black;">
+                            Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row1">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row2">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row3">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row4">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row5">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row6">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row7">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row8">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row9">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row10">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row11">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row12">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row13">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row14">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row15">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row16">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row17">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row18">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row19">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row20">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row21">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row22">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row23">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+
+                    </tr>
+                    <tr id="row24">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right; border-right: none;"></td>
+                    </tr>
+                    <tr id="row25">
+                        <td style="border-bottom: 1px solid black;"></td>
+                        <td style="border-bottom: 1px solid black;"></td>
+                        <td style="border-bottom: 1px solid black;"></td>
+                        <td style="border-bottom: 1px solid black;"></td>
+                        <td style="text-align: right; border-bottom: 1px solid black;"></td>
+                        <td style="text-align: right; border-right: none; border-bottom: 1px solid black;"></td>
+                    </tr>
+                    <tr id="row26">
+                        <td></td>
+                        <td id="sub-total" style="text-align: right;">
+                            CGST
+                        </td>
+                        <td colspan="3" id="cgst" style="text-align: right;"></td>
+                        <td></td>
+                    </tr>
+                    <tr id="row27">
+                        <td></td>
+                        <td style="text-align: right;">SGST</td>
+                        <td colspan="3" id="sgst" style="text-align: right;"></td>
+                        <td></td>
+                    </tr>
+                    <tr id="row28">
+                        <td></td>
+                        <td style="text-align: right;">IGST</td>
+                        <td colspan="3" id="igst" style="text-align: right;"></td>
+                        <td></td>
+                    </tr>
+                    <tr id="row29">
+                        <td></td>
+                        <td style="text-align: right;">Total</td>
+                        <td colspan="3" id="total" style="text-align: right;"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button type="submit" onclick="billPrint()">Print</button>
+    </div>
+
+    <script>
+        function billPrint() {
+            const content = document.getElementById("parent-container").innerHTML;
+            const printWindow = window.open("", "PRINT", "height=900, width=1000");
+            printWindow.document.write(content);
+            printWindow.document.close();
+            printWindow.print();
+            //printWindow.close();
+        }
+    </script>
+</body>
+
+</html>

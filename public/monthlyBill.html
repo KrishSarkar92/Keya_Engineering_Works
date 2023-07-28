@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>CSS Template</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<div id="parent-container" style="margin: auto; width: 50%; display: flex; justify-content: center;">
+		<style>
+			table {
+				width: 7in;
+				height: 9in;
+				border: 1px solid lightgray;
+			}
+
+			tr,
+			th,
+			td {
+				border: 1px solid lightgray;
+				border-collapse: collapse;
+			}
+
+			.lst {
+				border-right: none;
+			}
+
+			tr th,
+			tr td {
+				height: 25px;
+			}
+
+			th {
+				background-color: #38a7b6 !important;
+				print-color-adjust: exact;
+			}
+
+			td {
+				padding-left: 3px;
+				padding-right: 3px;
+			}
+
+			tbody tr:nth-child(even) {
+				background-color: #92ced6 !important;
+				print-color-adjust: exact;
+			}
+
+			div#bill-info {
+				text-align: center;
+			}
+
+			div#date-info {
+				text-align: right;
+				padding: 10px;
+			}
+
+			span#cname {
+				font-size: 25px;
+				font-weight: bold;
+			}
+
+			span#bill-date label[for="date"],
+			span#bill-date label[for="from"],
+			span#bill-date label[for="to"] {
+				font-weight: bold;
+			}
+
+			button {
+				background-color: blue;
+				color: white;
+				text-align: center;
+				font-style: italic;
+				padding: 5px;
+				padding-right: 20px;
+				padding-left: 20px;
+				font-size: 20px;
+				margin-top: 10px;
+				border-radius: 10px;
+			}
+
+			button:hover {
+				cursor: pointer;
+			}
+		</style>
+		<div id="print-layout"
+			style="display: flex; flex-direction: column; justify-content: center; background-color: aliceblue; width: 7in;">
+			<div id="bill-info">
+				<span id="cname">KEYA ENGINEERING WORKS</span><br>
+				<div id="date-info">
+					<span id="company-name">
+						<label for="company-name">Bill for:</label>&nbsp;
+						<label for="name" id="companyName"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</span>
+					<span id="bill-date">
+						<label for="date">Date:</label>&nbsp;&nbsp;
+						<label for="from">From:</label>&nbsp;&nbsp;
+						<label for="date-from" id="date-from">1-June-23</label>&nbsp;&nbsp;
+						<label for="to">To:</label>&nbsp;&nbsp;
+						<label for="date-to" id="date-to">15-June-23</label>
+					</span>
+				</div>
+			</div>
+			<table>
+				<thead>
+					<tr id="row0">
+						<th>Sr No</th>
+						<th>Date</th>
+						<th>Invoice No</th>
+						<th>Product Name</th>
+						<th>Quantity</th>
+						<th>Rate</th>
+						<th class="lst">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="row1">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row2">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row3">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row4">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row5">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row6">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row7">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row8">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row9">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row10">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row11">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row12">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row13">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row14">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row15">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row16">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row17">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row18">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row19">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row20">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row21">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row22">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row23">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row24">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row25">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row26">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row27">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row28">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row29">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row30">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr id="row31">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style="text-align: right;"></td>
+						<td style="text-align: right;"></td>
+						<td class="lst" style="text-align: right;"></td>
+					</tr>
+					<tr style="background-color:rgb(252, 161, 127);">
+						<td colspan="6" style="background-color:rgb(252, 161, 127);">Sub total</td>
+						<td id="sub-total" class="lst" style="background-color:rgb(252, 161, 127); text-align: right;">
+						</td>
+					</tr>
+					<tr style="background-color:rgb(252, 161, 127);">
+						<td colspan="5" style="background-color:rgb(252, 161, 127);">GST</td>
+						<td id="gst-rate" style="background-color:rgb(252, 161, 127);"></td>
+						<td id="gst" class="lst" style="background-color:rgb(252, 161, 127); text-align: right;"></td>
+					</tr>
+					<tr style="background-color:rgb(252, 161, 127);">
+						<td colspan="6" style="background-color:rgb(252, 161, 127);">Total</td>
+						<td id="total" class="lst" style="background-color:rgb(252, 161, 127); text-align: right;"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div style="display: flex; justify-content: center;">
+		<button type="submit" onclick="billPrint()">Print</button>
+	</div>
+
+	<script>
+		function billPrint() {
+			const content = document.getElementById("parent-container").innerHTML;
+			const printWindow = window.open("", "PRINT", "height=900, width=1000");
+			printWindow.document.write(content);
+			printWindow.document.close();
+			printWindow.print();
+			//printWindow.close();
+		}
+	</script>
+</body>
+
+</html>

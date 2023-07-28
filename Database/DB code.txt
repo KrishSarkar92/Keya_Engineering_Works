@@ -1,0 +1,541 @@
+Microsoft Windows [Version 10.0.19044.2486]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\krish>mysql -u root -p
+Enter password: ****
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.10.2-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++------------------------+
+| Database               |
++------------------------+
+| datastorage            |
+| information_schema     |
+| keya_engineering_works |
+| mysql                  |
+| performance_schema     |
+| sys                    |
++------------------------+
+6 rows in set (0.025 sec)
+
+MariaDB [(none)]> use keya_engineering_works
+Database changed
+MariaDB [keya_engineering_works]> show tables;
+Empty set (0.003 sec)
+
+MariaDB [keya_engineering_works]> create table company(ID varchar(20) primary key, Name varchar(40) unique key, Date_of_Establish date unique key, Address varchar(150));
+Query OK, 0 rows affected (0.176 sec)
+
+MariaDB [keya_engineering_works]> create table gst(ID varchar(20) primary key, SGST decimal(6, 2), CGST decimal(6, 2), Product_ID varchar(15) unique key);
+Query OK, 0 rows affected (0.069 sec)
+
+MariaDB [keya_engineering_works]> create table purchase_product(Product_ID varchar(15) primary key not null, Product_Name varchar(40) unique key);
+Query OK, 0 rows affected (0.064 sec)
+
+MariaDB [keya_engineering_works]> create table purchase(Product_ID varchar(15) primary key not null, Date date not null default curdate, Price decimal(10, 2) not null, Quantity int(10) not null);
+ERROR 1054 (42S22): Unknown column 'curdate' in 'DEFAULT'
+MariaDB [keya_engineering_works]> create table purchase(Product_ID varchar(15) primary key not null, Date date default curdate not null, Price decimal(10, 2) not null, Quantity int(10) not null);
+ERROR 1054 (42S22): Unknown column 'curdate' in 'DEFAULT'
+MariaDB [keya_engineering_works]> create table purchase(Product_ID varchar(15) primary key not null, Date date default curdate, Price decimal(10, 2) not null, Quantity int(10) not null);
+ERROR 1054 (42S22): Unknown column 'curdate' in 'DEFAULT'
+MariaDB [keya_engineering_works]> create table purchase(Product_ID varchar(15) primary key not null, Date date default currdate not null, Price decimal(10, 2) not null, Quantity int(10) not null);
+ERROR 1054 (42S22): Unknown column 'currdate' in 'DEFAULT'
+MariaDB [keya_engineering_works]> create table purchase(Product_ID varchar(15) primary key not null, Date date default curdate() not null, Price decimal(10, 2) not null, Quantity int(10) not null);
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [keya_engineering_works]> create table sale_product(ID varchar(20) primary key, Name varchar(20) unique key);
+Query OK, 0 rows affected (0.068 sec)
+
+MariaDB [keya_engineering_works]> create table sale(Product_ID varchar(20) primary key, Date date not null default curdate(), Price decimal(10, 2) not null, Quantity int(10) not null, Invoice_No varchar(20) not null, Challan_No varchar(20), Order_No varchar(20));
+Query OK, 0 rows affected (0.060 sec)
+
+MariaDB [keya_engineering_works]> create table customer(Customer_ID varchar(20) primary key, Customer_Name varchar(40) not null);
+Query OK, 0 rows affected (0.062 sec)
+
+MariaDB [keya_engineering_works]> create table address(ID varchar(20) primary key, State varchar(40) not null, City varchar(40) not null, PIN int not null, Street varchar(40), `House/Building` varchar(40));
+Query OK, 0 rows affected (0.046 sec)
+
+MariaDB [keya_engineering_works]> create table sale_bill(Product_ID varchar(15) primary key, Date date default curdate not null, Price decimal(10, 2) not null, Quantity int(10) not null);
+ERROR 1054 (42S22): Unknown column 'curdate' in 'DEFAULT'
+MariaDB [keya_engineering_works]> create table sale_bill(Product_ID varchar(15) primary key, Date date default curdate() not null, Price decimal(10, 2) not null, Quantity int(10) not null);
+Query OK, 0 rows affected (0.064 sec)
+
+MariaDB [keya_engineering_works]> show tables;
++----------------------------------+
+| Tables_in_keya_engineering_works |
++----------------------------------+
+| address                          |
+| company                          |
+| customer                         |
+| gst                              |
+| purchase                         |
+| purchase_product                 |
+| sale                             |
+| sale_bill                        |
+| sale_product                     |
++----------------------------------+
+9 rows in set (0.052 sec)
+
+MariaDB [keya_engineering_works]> desc company;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| ID                | varchar(20)  | NO   | PRI | NULL    |       |
+| Name              | varchar(40)  | YES  | UNI | NULL    |       |
+| Date_of_Establish | date         | YES  | UNI | NULL    |       |
+| Address           | varchar(150) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.119 sec)
+
+MariaDB [keya_engineering_works]> alter table company drop column Address;
+Query OK, 0 rows affected (0.076 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> desc company;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| ID                | varchar(20) | NO   | PRI | NULL    |       |
+| Name              | varchar(40) | YES  | UNI | NULL    |       |
+| Date_of_Establish | date        | YES  | UNI | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+3 rows in set (0.074 sec)
+
+MariaDB [keya_engineering_works]> desc gst;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| ID         | varchar(20)  | NO   | PRI | NULL    |       |
+| SGST       | decimal(6,2) | YES  |     | NULL    |       |
+| CGST       | decimal(6,2) | YES  |     | NULL    |       |
+| Product_ID | varchar(15)  | YES  | UNI | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.085 sec)
+
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references company.ID;
+ERROR 1005 (HY000): Can't create table `keya_engineering_works`.`gst` (errno: 150 "Foreign key constraint is incorrectly formed")
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references company(ID);
+Query OK, 0 rows affected (0.087 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> select table_name, constraint_type, constraint_name from information_shcema.table_constraints where table_name = gst;
+ERROR 1146 (42S02): Table 'information_shcema.table_constraints' doesn't exist
+MariaDB [keya_engineering_works]> show databases;
++------------------------+
+| Database               |
++------------------------+
+| datastorage            |
+| information_schema     |
+| keya_engineering_works |
+| mysql                  |
+| performance_schema     |
+| sys                    |
++------------------------+
+6 rows in set (0.002 sec)
+
+MariaDB [keya_engineering_works]> select table_name, constraint_type, constraint_name from information_schcema.table_constraints where table_name = gst;
+ERROR 1146 (42S02): Table 'information_schcema.table_constraints' doesn't exist
+MariaDB [keya_engineering_works]> select table_name, constraint_type, constraint_name from information_schema.table_constraints where table_name = gst;
+ERROR 1054 (42S22): Unknown column 'gst' in 'where clause'
+MariaDB [keya_engineering_works]> select table_name, constraint_type, constraint_name from information_schema.table_constraints;
++---------------------------+-----------------+-------------------+
+| table_name                | constraint_type | constraint_name   |
++---------------------------+-----------------+-------------------+
+| credential                | PRIMARY KEY     | PRIMARY           |
+| user                      | PRIMARY KEY     | PRIMARY           |
+| yuvangarments             | PRIMARY KEY     | PRIMARY           |
+| address                   | PRIMARY KEY     | PRIMARY           |
+| company                   | PRIMARY KEY     | PRIMARY           |
+| company                   | UNIQUE          | Name              |
+| company                   | UNIQUE          | Date_of_Establish |
+| customer                  | PRIMARY KEY     | PRIMARY           |
+| gst                       | PRIMARY KEY     | PRIMARY           |
+| gst                       | UNIQUE          | Product_ID        |
+| gst                       | FOREIGN KEY     | gst_ibfk_1        |
+| purchase                  | PRIMARY KEY     | PRIMARY           |
+| purchase_product          | PRIMARY KEY     | PRIMARY           |
+| purchase_product          | UNIQUE          | Product_Name      |
+| sale                      | PRIMARY KEY     | PRIMARY           |
+| sale_bill                 | PRIMARY KEY     | PRIMARY           |
+| sale_product              | PRIMARY KEY     | PRIMARY           |
+| sale_product              | UNIQUE          | Name              |
+| columns_priv              | PRIMARY KEY     | PRIMARY           |
+| column_stats              | PRIMARY KEY     | PRIMARY           |
+| db                        | PRIMARY KEY     | PRIMARY           |
+| event                     | PRIMARY KEY     | PRIMARY           |
+| func                      | PRIMARY KEY     | PRIMARY           |
+| global_priv               | PRIMARY KEY     | PRIMARY           |
+| global_priv               | CHECK           | Priv              |
+| gtid_slave_pos            | PRIMARY KEY     | PRIMARY           |
+| help_category             | PRIMARY KEY     | PRIMARY           |
+| help_category             | UNIQUE          | name              |
+| help_keyword              | PRIMARY KEY     | PRIMARY           |
+| help_keyword              | UNIQUE          | name              |
+| help_relation             | PRIMARY KEY     | PRIMARY           |
+| help_topic                | PRIMARY KEY     | PRIMARY           |
+| help_topic                | UNIQUE          | name              |
+| index_stats               | PRIMARY KEY     | PRIMARY           |
+| innodb_index_stats        | PRIMARY KEY     | PRIMARY           |
+| innodb_table_stats        | PRIMARY KEY     | PRIMARY           |
+| plugin                    | PRIMARY KEY     | PRIMARY           |
+| proc                      | PRIMARY KEY     | PRIMARY           |
+| procs_priv                | PRIMARY KEY     | PRIMARY           |
+| proxies_priv              | PRIMARY KEY     | PRIMARY           |
+| roles_mapping             | UNIQUE          | Host              |
+| servers                   | PRIMARY KEY     | PRIMARY           |
+| tables_priv               | PRIMARY KEY     | PRIMARY           |
+| table_stats               | PRIMARY KEY     | PRIMARY           |
+| time_zone                 | PRIMARY KEY     | PRIMARY           |
+| time_zone_leap_second     | PRIMARY KEY     | PRIMARY           |
+| time_zone_name            | PRIMARY KEY     | PRIMARY           |
+| time_zone_transition      | PRIMARY KEY     | PRIMARY           |
+| time_zone_transition_type | PRIMARY KEY     | PRIMARY           |
+| transaction_registry      | PRIMARY KEY     | PRIMARY           |
+| transaction_registry      | UNIQUE          | commit_id         |
+| sys_config                | PRIMARY KEY     | PRIMARY           |
++---------------------------+-----------------+-------------------+
+52 rows in set (1.948 sec)
+
+MariaDB [keya_engineering_works]> select table_name, constraint_type, constraint_name from information_schema.table_constraints where table_name=keya_engineering_work.gst;
+ERROR 1054 (42S22): Unknown column 'keya_engineering_work.gst' in 'where clause'
+MariaDB [keya_engineering_works]> select table_name, constraint_type, constraint_name from information_schema.table_constraints where table_name=keya_engineering_works.gst;
+ERROR 1054 (42S22): Unknown column 'keya_engineering_works.gst' in 'where clause'
+MariaDB [keya_engineering_works]> alter table gst drop gst_ibfk_1;
+ERROR 1091 (42000): Can't DROP COLUMN `gst_ibfk_1`; check that it exists
+MariaDB [keya_engineering_works]> alter table gst drop constraint gst_ibfk_1;
+Query OK, 0 rows affected (0.059 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [keya_engineering_works]> show tables;
++----------------------------------+
+| Tables_in_keya_engineering_works |
++----------------------------------+
+| address                          |
+| company                          |
+| customer                         |
+| gst                              |
+| purchase                         |
+| purchase_product                 |
+| sale                             |
+| sale_bill                        |
+| sale_product                     |
++----------------------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references(company.ID) references(customer.ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(company.ID) references(customer.ID)' at line 1
+MariaDB [keya_engineering_works]> desc company;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| ID                | varchar(20) | NO   | PRI | NULL    |       |
+| Name              | varchar(40) | YES  | UNI | NULL    |       |
+| Date_of_Establish | date        | YES  | UNI | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+3 rows in set (0.024 sec)
+
+MariaDB [keya_engineering_works]> desc customre;
+ERROR 1146 (42S02): Table 'keya_engineering_works.customre' doesn't exist
+MariaDB [keya_engineering_works]> desc customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Customer_ID   | varchar(20) | NO   | PRI | NULL    |       |
+| Customer_Name | varchar(40) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+2 rows in set (0.065 sec)
+
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references company(ID), references customer(Customer_ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'references customer(Customer_ID)' at line 1
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references company(ID) references customer(Customer_ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'references customer(Customer_ID)' at line 1
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references company(ID) customer(Customer_ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'customer(Customer_ID)' at line 1
+MariaDB [keya_engineering_works]> desc purchase;
++------------+---------------+------+-----+-----------+-------+
+| Field      | Type          | Null | Key | Default   | Extra |
++------------+---------------+------+-----+-----------+-------+
+| Product_ID | varchar(15)   | NO   | PRI | NULL      |       |
+| Date       | date          | NO   |     | curdate() |       |
+| Price      | decimal(10,2) | NO   |     | NULL      |       |
+| Quantity   | int(10)       | NO   |     | NULL      |       |
++------------+---------------+------+-----+-----------+-------+
+4 rows in set (0.065 sec)
+
+MariaDB [keya_engineering_works]> desc purchase_Producr;
+ERROR 1146 (42S02): Table 'keya_engineering_works.purchase_producr' doesn't exist
+MariaDB [keya_engineering_works]> desc purchase_Product;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Product_ID   | varchar(15) | NO   | PRI | NULL    |       |
+| Product_Name | varchar(40) | YES  | UNI | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+2 rows in set (0.015 sec)
+
+MariaDB [keya_engineering_works]> alter table purchase add constraint foreign key(Product_ID) references purchase_Product(Product_ID);
+Query OK, 0 rows affected (0.086 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> desc sale;
++------------+---------------+------+-----+-----------+-------+
+| Field      | Type          | Null | Key | Default   | Extra |
++------------+---------------+------+-----+-----------+-------+
+| Product_ID | varchar(20)   | NO   | PRI | NULL      |       |
+| Date       | date          | NO   |     | curdate() |       |
+| Price      | decimal(10,2) | NO   |     | NULL      |       |
+| Quantity   | int(10)       | NO   |     | NULL      |       |
+| Invoice_No | varchar(20)   | NO   |     | NULL      |       |
+| Challan_No | varchar(20)   | YES  |     | NULL      |       |
+| Order_No   | varchar(20)   | YES  |     | NULL      |       |
++------------+---------------+------+-----+-----------+-------+
+7 rows in set (0.071 sec)
+
+MariaDB [keya_engineering_works]> desc sale_product;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | varchar(20) | NO   | PRI | NULL    |       |
+| Name  | varchar(20) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.062 sec)
+
+MariaDB [keya_engineering_works]> alter table sale_product rename ID to Product_ID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'to Product_ID' at line 1
+MariaDB [keya_engineering_works]> alter table sale_product rename column ID to Product_ID;
+Query OK, 0 rows affected (0.061 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> desc sale_product;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Product_ID | varchar(20) | NO   | PRI | NULL    |       |
+| Name       | varchar(20) | YES  | UNI | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+2 rows in set (0.091 sec)
+
+MariaDB [keya_engineering_works]> alter table sale add constraint foreign key(Product_ID) references sale_product(Product_ID);
+Query OK, 0 rows affected (0.083 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> desc sale_bill;
++------------+---------------+------+-----+-----------+-------+
+| Field      | Type          | Null | Key | Default   | Extra |
++------------+---------------+------+-----+-----------+-------+
+| Product_ID | varchar(15)   | NO   | PRI | NULL      |       |
+| Date       | date          | NO   |     | curdate() |       |
+| Price      | decimal(10,2) | NO   |     | NULL      |       |
+| Quantity   | int(10)       | NO   |     | NULL      |       |
++------------+---------------+------+-----+-----------+-------+
+4 rows in set (0.071 sec)
+
+MariaDB [keya_engineering_works]> alter table sale_bill add column Invoice_No varchar(20), Challan_No varchar(20), Order_No varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varchar(20), Order_No varchar(20))' at line 1
+MariaDB [keya_engineering_works]> alter table sale_bill add columns Invoice_No varchar(20), Challan_No varchar(20), Order_No varchar(20));
+ERROR 4161 (HY000): Unknown data type: 'Invoice_No'
+MariaDB [keya_engineering_works]> alter table sale_bill add column Invoice_No varchar(20), Challan_No varchar(20), Order_No varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varchar(20), Order_No varchar(20)' at line 1
+MariaDB [keya_engineering_works]> alter table sale_bill add columns Invoice_No varchar(20), Challan_No varchar(20), Order_No varchar(20);
+ERROR 4161 (HY000): Unknown data type: 'Invoice_No'
+MariaDB [keya_engineering_works]> alter table sale_bill add Invoice_No varchar(20), Challan_No varchar(20), Order_No varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varchar(20), Order_No varchar(20)' at line 1
+MariaDB [keya_engineering_works]> alter table sale_bill add column Invoice_No varchar(20);
+Query OK, 0 rows affected (0.061 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> alter table sale_bill add column Challan_No varchar(20);
+Query OK, 0 rows affected (0.038 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> alter table sale_bill add column Order_No varchar(20);
+Query OK, 0 rows affected (0.030 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> alter table sale_bill add constraint foreign key(Product_ID) references sale_product(Product_ID);
+Query OK, 0 rows affected (0.104 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> show tables;
++----------------------------------+
+| Tables_in_keya_engineering_works |
++----------------------------------+
+| address                          |
+| company                          |
+| customer                         |
+| gst                              |
+| purchase                         |
+| purchase_product                 |
+| sale                             |
+| sale_bill                        |
+| sale_product                     |
++----------------------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [keya_engineering_works]> drop table customer;
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [keya_engineering_works]> desc company;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| ID                | varchar(20) | NO   | PRI | NULL    |       |
+| Name              | varchar(40) | YES  | UNI | NULL    |       |
+| Date_of_Establish | date        | YES  | UNI | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+3 rows in set (0.069 sec)
+
+MariaDB [keya_engineering_works]> alter table company add column Type varchar(10) not null;
+Query OK, 0 rows affected (0.016 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> desc address;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| ID             | varchar(20) | NO   | PRI | NULL    |       |
+| State          | varchar(40) | NO   |     | NULL    |       |
+| City           | varchar(40) | NO   |     | NULL    |       |
+| PIN            | int(11)     | NO   |     | NULL    |       |
+| Street         | varchar(40) | YES  |     | NULL    |       |
+| House/Building | varchar(40) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.069 sec)
+
+MariaDB [keya_engineering_works]> desc gst;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| ID         | varchar(20)  | NO   | PRI | NULL    |       |
+| SGST       | decimal(6,2) | YES  |     | NULL    |       |
+| CGST       | decimal(6,2) | YES  |     | NULL    |       |
+| Product_ID | varchar(15)  | YES  | UNI | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.079 sec)
+
+MariaDB [keya_engineering_works]> alter table gst add constraint foreign key(ID) references company(ID);
+Query OK, 0 rows affected (0.082 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]> alter table address add constraint foreign key(ID) references company(ID);
+Query OK, 0 rows affected (0.079 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [keya_engineering_works]>
+
+
+
+C:\Users\krish>mysqldump -u root -p keya_engineering_works > Desktop/keya_engineering_works.sql
+Enter password: ****
+
+C:\Users\krish>cd Desktop/
+
+C:\Users\krish\Desktop>dir
+ Volume in drive C is OS
+ Volume Serial Number is 1EE8-1AB9
+
+ Directory of C:\Users\krish\Desktop
+
+07-02-2023  15:13    <DIR>          .
+07-02-2023  15:13    <DIR>          ..
+01-02-2023  18:31            65,420 143364794_738632747030173_1795889263352138647_n.jpg
+05-02-2023  17:23           410,645 326843417_1552781271897345_7712809726478159822_n.jpg
+31-01-2023  11:33           123,418 326893303_758792932329674_3093378382522118891_n.jpg
+31-01-2023  11:36           155,173 327333068_1390553698424278_4237660226675204318_n.jpg
+02-02-2023  01:56            58,336 328350758_907870263962834_9129246979076314188_n.jpg
+01-02-2023  13:28           334,227 328504305_1237185863823262_6928520935478878894_n.jpg
+01-02-2023  02:55           332,672 328753143_1220174768931006_4543684548629283642_n.jpg
+05-02-2023  22:00            52,663 328916778_6378105622224085_8203353779654643382_n.jpg
+31-01-2023  20:53         1,236,229 alliance.PNG
+16-12-2021  16:17        12,096,720 ASUSSystemControlInterfacev3_ASUS_Z_V3.0.19.0_13783.exe
+01-12-2022  14:22               951 CodeBlocks.lnk
+11-03-2022  22:02             1,096 Eclipse IDE for Java Developers - 2021-12.lnk
+18-08-2022  14:57             2,373 GitHub Desktop.lnk
+27-06-2022  15:24       855,851,784 Graphic_DCH_ROG_NVIDIA_Z_V30.0.15.1278_28163.exe
+22-09-2021  15:03             1,114 IPConnect.lnk
+21-06-2022  21:32             2,711 IRCTC Next Generation eTicketing System.lnk
+20-11-2022  19:07             2,733 JioCinema.lnk
+07-02-2023  15:09    <DIR>          Keya Engineering Works
+07-02-2023  15:13             7,664 keya_engineering_works.sql
+07-09-2022  14:36            10,309 mavenjava.jar
+14-11-2022  23:32             1,051 Men of War Assault Squad 2 Cold War.lnk
+14-11-2022  23:29             1,056 Men of War Assault Squad 2 Ostfront Veteranen MULTi7.lnk
+28-12-2021  00:02             2,354 Microsoft Edge.lnk
+13-01-2023  10:47    <DIR>          New folder
+31-01-2023  20:44           220,421 Payment Receipt.pdf
+31-01-2023  20:45           225,147 Payment Receipt1.pdf
+30-01-2023  14:16           280,076 pr.PNG
+19-10-2022  22:52    <DIR>          Repository
+25-07-2022  16:45             1,000 RustDesk.lnk
+20-08-2022  20:29               943 SpringToolSuite4 - Shortcut.lnk
+11-03-2022  21:54             1,072 sqldeveloper.lnk
+27-06-2022  15:22        15,794,952 WirelessLan_ROG_Intel_Z_V22.130.0.5_27930.exe
+25-12-2021  00:00               898 µTorrent.lnk
+              30 File(s)    887,275,208 bytes
+               5 Dir(s)  66,223,960,064 bytes free
+
+C:\Users\krish\Desktop>cd "Keya Engineering Works"
+
+C:\Users\krish\Desktop\Keya Engineering Works>npm init -y
+Wrote to C:\Users\krish\Desktop\Keya Engineering Works\package.json:
+
+{
+  "name": "keya-engineering-works",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+
+
+C:\Users\krish\Desktop\Keya Engineering Works>npm install express mariadb
+
+added 65 packages, and audited 66 packages in 5s
+
+7 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm notice
+npm notice New major version of npm available! 8.19.3 -> 9.4.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.4.1
+npm notice Run npm install -g npm@9.4.1 to update!
+npm notice
+
+C:\Users\krish\Desktop\Keya Engineering Works>npm update
+
+up to date, audited 66 packages in 1s
+
+7 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+C:\Users\krish\Desktop\Keya Engineering Works>copy con index.js
+const express = require('express');
+^D
+        1 file(s) copied.
+
+C:\Users\krish\Desktop\Keya Engineering Works>npm install dotenv cheerio
+
+added 15 packages, and audited 81 packages in 2s
+
+20 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+C:\Users\krish\Desktop\Keya Engineering Works>

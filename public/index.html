@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Keya Engineering Works</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/toastNotify.css">
+</head>
+
+<body>
+    <div class="topContent">
+        <div class="image">
+            <img src="#">
+        </div>
+        <div class="companyName">
+            <label>KEYA ENGINEERING WORKS</label>
+        </div>
+    </div>
+    <hr>
+    <div class="body">
+        <p class="choiceLabel">Choose entry:</p>
+        <div class="dataEntryChoice">
+            <form action="/entryChoice" method="post" name="entryChoice">
+                <select id="entryChoice" name="entryChoice" onchange="showHide()">
+                    <option value="" selected>Entry Type</option>
+                    <option value="purchase">Purchase</option>
+                    <option value="sale">Sale</option>
+                    <option value="saleBill">Sale Bill</option>
+                    <option value="delivery">Delivery</option>
+                    <option value="products">Products</option>
+                </select>
+            </form>
+        </div>
+        <div class="dataEntry" id="dataEntry">
+            <div id="purchaseEntry">
+                <form action="/purchaseEntry" method="POST">
+                    <select name="companyPurchaseGst" id="companyPurchaseGst">
+                        <option value="" selected>Select Company</option>
+                    </select><label for="Warning" id="companyPurchaseWarn"></label>
+                    <table class="purchase">
+                        <caption>Purchase Entry</caption>
+                        <thead>
+                            <tr>
+                                <th>Products</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>GST</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select id="purchase" name="productId">
+                                        <option value="" selected>Select Products</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" name="pdate"></td>
+                                <td><input type="text" name="price"></td>
+                                <td><input type="text" name="quantity"></td>
+                                <td><input type="text" name="gstRate"></td>
+                                <td id="save-btn-td"><button type="submit">Save</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div id="saleEntry">
+                <form action="/saleEntry" method="post">
+                    <select name="companySaleGst" id="companySaleGst">
+                        <option value="" selected>Select Company</option>
+                    </select><label for="Warning" id="companySaleWarn"></label>
+                    <table class="sale">
+                        <caption>Sale Entry</caption>
+                        <thead>
+                            <tr>
+                                <th>Products</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>GST</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select id="saleId" name="productId">
+                                        <option value="" selected>Select Product</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" name="sdate"></td>
+                                <td><input type="text" name="price"></td>
+                                <td><input type="text" name="quantity"></td>
+                                <td><input type="text" name="gstRate"></td>
+                                <td id="save-btn-td"><button type="submit">Save</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div id="saleBillEntry">
+                <form action="/saleBillEntry" method="post">
+                    <select name="companySaleBillGst" id="companySaleBillGst">
+                        <option value="" selected>Select Company</option>
+                    </select><label for="Warning" id="companySaleBillWarn"></label>
+                    <table class="saleBill">
+                        <caption>Sale Bill Entry</caption>
+                        <thead>
+                            <tr>
+                                <th>Products</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>GST</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select id="saleBillId" name="productId">
+                                        <option value="" selected>Select Product</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" name="sbdate"></td>
+                                <td><input type="text" name="price"></td>
+                                <td><input type="text" name="quantity"></td>
+                                <td><input type="text" name="gstRate"></td>
+                                <td id="save-btn-td"><button type="submit">Save</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div id="deliveryEntry">
+                <form action="/deliveryEntry" method="post">
+                    <table class="delivery">
+                        <caption>Delivery Entry</caption>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Invoice No</th>
+                                <th>Challan No</th>
+                                <th>Order No</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select name="companyId" id="companyId">
+                                        <option value="" selected>Select Company</option>
+                                    </select>
+                                </td>
+                                <th><input type="text" name="invoiceNo"></th>
+                                <td><input type="text" name="challanNo"></td>
+                                <td><input type="text" name="orderNo"></td>
+                                <td id="save-btn-td"><button type="submit">Save</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div id="search">
+                <p class="choiceLabel">Search database:</p>
+                <select name="searchType" id="searchType">
+                    <option value="" selected>Choose search type...</option>
+                    <option value="name">Search product name</option>
+                    <option value="id">Search product Id</option>
+                    <option value="date">Search date</option>
+                </select>
+            </div>
+            <hr>
+            <div id="billPrint">
+                <form action="/generateBill" method="post">
+                    <select name="billType" id="billType">
+                        <option value="" selected disabled>Choose bill type...</option>
+                        <option value="dailyBill">Daily Bill</option>
+                        <option value="monthlyBill">Monthly Bill</option>
+                    </select><br><br>
+
+                    <button type="submit">Generate Bill</button>
+                </form>
+
+                <div id="generateDailyBill" style="display: none;">
+                    <form action="/printDailyBill" method="post">
+                        <select name="database_type" id="database_type_daily">
+                            <option value="" selected disabled>Select bill type...</option>
+                            <option value="sale">Original</option>
+                            <option value="sale_bill">On Paper</option>
+                        </select><br>
+                        <label for="date">Date:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="date" name="billDate" id="billDate">
+                        <select name="gstnumber" id="gstnumber">
+                            <option value="" selected disabled>Choose GST Number...</option>
+                        </select>
+                        <select name="cname" id="cnamed">
+                            <option value="" selected disabled>Choose company</option>
+                        </select>
+                        <label for="gstRate">GST:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="gstRate" id="gstRate">
+
+                        <button type="submit" onclick="requireInput()">Print</button>
+                    </form>
+                </div>
+
+                <div id="generateMonthlyBill" style="display: none;">
+                    <form action="/printMonthlyBill" method="post">
+                        <select name="database_type" id="database_type_monthly">
+                            <option value="" selected disabled>Select bill type...</option>
+                            <option value="sale">Original</option>
+                            <option value="sale_bill">On Paper</option>
+                        </select><br>
+
+                        <select name="cname" id="cnamem">
+                            <option value="" selected disabled>Choose company...</option>
+                        </select>
+                        <label for="date-from">Date From:</label>
+                        <input type="date" name="dateFrom" id="dateFrom">
+                        <label for="date-to">Date To:</label>
+                        <input type="date" name="dateTo" id="dateTo">
+                        <label for="gst">GST rate:</label>
+                        <input type="text" name="gst_rate" id="gst_rate" placeholder="GST rate">
+                        <button type="submit">Print</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Hidden values-->
+    <input type="hidden" value="" id="purchaseSelected">
+    <input type="hidden" value="" id="saleSelected">
+    <input type="hidden" value="" id="saleBillSelected">
+    <input type="hidden" value="" id="deliverySelected">
+    <input type="hidden" value="" id="productsSelected">
+    <input type="hidden" value="" id="toastNotify">
+
+    <script lang="javascript" src="./js/toastNotify.js"></script>
+    <script lang="javascript">
+        function showHide() {
+            const choice = document.getElementById("entryChoice").value;
+            const dataEntry = document.getElementById("dataEntry");
+            const purchaseEntry = document.getElementById("purchaseEntry");
+            const saleEntry = document.getElementById("saleEntry");
+            const saleBillEntry = document.getElementById("saleBillEntry");
+            const deliveryEntry = document.getElementById("deliveryEntry");
+            const productsEntry = document.getElementById("productsEntry");
+
+            const purchaseSelected = document.getElementById("purchaseSelected").value;
+            const saleSelected = document.getElementById("saleSelected").value;
+            const saleBillSelected = document.getElementById("saleBillSelected").value;
+            const deliverySelected = document.getElementById("deliverySelected").value;
+            const productsSelected = document.getElementById("productsSelected").value;
+
+            if (choice === "") {
+                dataEntry.style.display = "none";
+            } else if (choice === "purchase") {
+                dataEntry.style.display = "block";
+                purchaseEntry.style.display = "block";
+                saleEntry.style.display = "none";
+                saleBillEntry.style.display = "none";
+                deliveryEntry.style.display = "none";
+            } else if (choice === "sale") {
+                dataEntry.style.display = "block";
+                saleEntry.style.display = "block";
+                purchaseEntry.style.display = "none";
+                saleBillEntry.style.display = "none";
+                deliveryEntry.style.display = "none";
+
+            } else if (choice === "saleBill") {
+                dataEntry.style.display = "block";
+                saleBillEntry.style.display = "block";
+                purchaseEntry.style.display = "none";
+                saleEntry.style.display = "none";
+                deliveryEntry.style.display = "none";
+
+            } else if (choice === "delivery") {
+                dataEntry.style.display = "block";
+                deliveryEntry.style.display = "block";
+                saleEntry.style.display = "none";
+                saleBillEntry.style.display = "none";
+                purchaseEntry.style.display = "none";
+
+            } else if (choice === "products") {
+                dataEntry.style.display = "block";
+                deliveryEntry.style.display = "none";
+                saleEntry.style.display = "none";
+                saleBillEntry.style.display = "none";
+                purchaseEntry.style.display = "none";
+
+            }
+
+
+            if (choice === 'purchase' && purchaseSelected === "") {
+                document.forms['entryChoice'].submit();
+            } else if (choice === 'sale' && saleSelected === "") {
+                document.forms['entryChoice'].submit();
+            } else if (choice === 'saleBill' && saleBillSelected === "") {
+                document.forms['entryChoice'].submit();
+            } else if (choice === 'delivery' && deliverySelected === "") {
+                document.forms['entryChoice'].submit();
+            } else if (choice === 'products' && productsSelected === "") {
+                document.forms['entryChoice'].submit();
+            }
+        }
+        showHide();
+
+        function requireInput() {
+            const billDate = document.getElementById('billDate');
+            const startBillDate = document.getElementById('startBillDate');
+            const endBillDate = document.getElementById('endBillDate');
+
+            // if (billDate.value === "") {
+            //     billDate.setAttribute('required', "");
+            //     // startBillDate.setAttribute('required', "");
+            //     // endBillDate.setAttribute('required', "");
+            // }
+        }
+
+        function mapGSTtoCompany() {
+            const gsts = document.getElementsByName('gst');
+            const gst = document.getElementById('gst');
+            const cnames = document.getElementsByName('cname');
+            const cname = document.getElementById('cname');
+
+            const len = gsts[0].length;
+            console.log(len);
+
+            for (let i = 0; i < len; i++) {
+                if (gst.value === gsts[0][i].value) {
+                    cname.value = cnames[0][i].value;
+                }
+            }
+        }
+
+        function mapCompanyToGST() {
+            const gsts = document.getElementsByName('gst');
+            const gst = document.getElementById('gst');
+            const cnames = document.getElementsByName('cname');
+            const cname = document.getElementById('cname');
+
+            const len = cnames[0].length;
+
+            for (let i = 0; i < len; i++) {
+                if (cname.value === cnames[0][i].value) {
+                    gst.value = gsts[0][i].value;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
